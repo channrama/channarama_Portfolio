@@ -2,26 +2,38 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
+    <section className="h-screen flex justify-center items-center px-6 bg-black">
+      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center text-center md:text-left">
+        
         {/* Photo Section */}
-        <div className="w-48 h-48 relative mb-8 md:mb-0">
+        <div className="w-64 h-64 relative mb-6 md:mb-0 md:mr-10 rounded-full overflow-hidden border-4 border-gray-500 shadow-lg">
           <Image
-            src="/profile.jpg" // Your photo path
+            src="/profile.jpg"
             alt="Profile"
             layout="fill"
-            className="rounded-full"
+            objectFit="cover"
           />
         </div>
 
         {/* Bio Section */}
-        <div className="md:ml-8">
-          <h2 className="text-4xl font-bold">About Me</h2>
-          <p className="mt-4 text-lg">
-            I'm a passionate developer with expertise in JavaScript, React, and
-            Node.js. I love building scalable and user-friendly applications.
+        <div className="max-w-2xl">
+          <h2 className="text-4xl font-bold text-white">About Me</h2>
+          
+          <p className="mt-4 text-lg text-gray-300">
+            I'm a Full Stack Web Developer skilled in JavaScript, React.js ,Next.js and Node.js.  
+            I push myself every day without any days off to become the best version of myself.
+            I believe real growth comes from Hard work and struggle
+            <b> Stay Hard.</b>
+          </p>
+
+          <p className="mt-4 text-lg text-gray-300">
+          Beyond coding, I write poetry in Kannada and enjoy reading books that broaden my perspective.          </p>
+
+          <p className="mt-4 text-lg text-gray-300">
+            I’m also passionate about cooking and love experimenting with different cuisines.
           </p>
         </div>
+
       </div>
     </section>
   );
