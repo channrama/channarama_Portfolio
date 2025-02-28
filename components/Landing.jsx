@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { TypeAnimation } from "react-type-animation";
-
+import Projects from "./Projects";
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -80,7 +80,7 @@ export default function LandingPage() {
 <section id="about" className="h-screen flex flex-col justify-center items-center w-full px-6 pt-12">
   <div className="max-w-3xl text-left text-gray-200">
     <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-2">About Me</h2>
-    <div className="border-b-4 border-teal-400 w-16"></div>
+    <div className="border-b-4 border-teal-400 w-16 "></div>
     <p className="mt-4 text-base sm:text-lg md:text-xl leading-relaxed">
       I'm a Full Stack Developer skilled in JavaScript, React.js, Next.js, and Node.js.  
       Passionate about blockchain, AI, and building scalable applications.  
@@ -104,8 +104,41 @@ export default function LandingPage() {
 
 
 
-      <section id="projects" className="h-screen flex items-center justify-center text-gray-300 text-2xl md:text-3xl">Projects Section</section>
-      <section id="contact" className="h-screen flex items-center justify-center text-gray-300 text-2xl md:text-3xl">Contact Section</section>
+     {/* Projects Section */}
+{/* Projects Section */}
+<section id="projects" className="min-h-screen flex flex-col justify-center items-center w-full px-6 ">
+<Projects></Projects>
+</section>
+
+
+{/* Contact Section */}
+<section id="contact" className="min-h-screen flex flex-col justify-center items-center w-full px-6 bg-gray-900 text-gray-300">
+  <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-3 sm:mb-4">Get in Touch</h2>
+  <div className="border-b-4 border-teal-400 w-16 mb-6"></div>
+
+  <p className="text-base sm:text-lg text-gray-400 mb-8 text-center max-w-md">
+    Feel free to reach out for collaborations, project discussions, or just a friendly chat. Let's build something amazing together!
+  </p>
+
+  <div className="flex flex-col sm:flex-row gap-4">
+    {/* Email */}
+    <a href="mailto:your.email@example.com" className="flex items-center gap-2 px-6 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-lg">
+      📧 Email Me
+    </a>
+    
+    {/* LinkedIn */}
+    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg">
+      🔗 LinkedIn
+    </a>
+
+    {/* GitHub */}
+    <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg">
+      💻 GitHub
+    </a>
+  </div>
+</section>
+
+
     </main>
   );
 }
