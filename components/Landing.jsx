@@ -1,5 +1,5 @@
 "use client";
-
+import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -112,31 +112,50 @@ export default function LandingPage() {
 
 
 {/* Contact Section */}
-<section id="contact" className="min-h-screen flex flex-col justify-center items-center w-full px-6 bg-gray-900 text-gray-300">
-  <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-3 sm:mb-4">Get in Touch</h2>
-  <div className="border-b-4 border-teal-400 w-16 mb-6"></div>
+<section
+      id="contact"
+      className="min-h-screen flex flex-col justify-center items-center w-full px-6 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white"
+    >
+      <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-3 sm:mb-4">
+        Get in Touch
+      </h2>
+      <div className="border-b-4 border-teal-400 w-16 mb-6"></div>
 
-  <p className="text-base sm:text-lg text-gray-400 mb-8 text-center max-w-md">
-    Feel free to reach out for collaborations, project discussions, or just a friendly chat. Let's build something amazing together!
-  </p>
+      <p className="text-base sm:text-lg text-gray-400 mb-8 text-center max-w-md">
+        Feel free to reach out for collaborations, project discussions, or just a
+        friendly chat. Let's build something amazing together!
+      </p>
 
-  <div className="flex flex-col sm:flex-row gap-4">
-    {/* Email */}
-    <a href="mailto:your.email@example.com" className="flex items-center gap-2 px-6 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition shadow-lg">
-      📧 Email Me
-    </a>
-    
-    {/* LinkedIn */}
-    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg">
-      🔗 LinkedIn
-    </a>
+      <div className="flex flex-col sm:flex-row gap-4">
+        {/* Email */}
+        <a
+          href="mailto:dschannappa93@gmail.com"
+          className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg"
+        >
+          <FaEnvelope className="text-xl" /> Email Me
+        </a>
 
-    {/* GitHub */}
-    <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg">
-      💻 GitHub
-    </a>
-  </div>
-</section>
+        {/* LinkedIn */}
+        <a
+          href="https://www.linkedin.com/in/d-s-channappa-848307277/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg"
+        >
+          <FaLinkedin className="text-xl" /> LinkedIn
+        </a>
+
+        {/* GitHub */}
+        <a
+          href="https://github.com/channrama"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition shadow-lg"
+        >
+          <FaGithub className="text-xl" /> GitHub
+        </a>
+      </div>
+    </section>
 
 
     </main>

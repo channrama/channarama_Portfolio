@@ -1,3 +1,5 @@
+
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -43,7 +45,7 @@ export default function Projects() {
       {/* Grid Layout for Large Screens - 3 cards per row */}
       <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl">
         {projects.map((project, index) => (
-          <div key={index} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 w-full h-full flex flex-col justify-between">
+          <div key={index} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 w-full h-full flex flex-col justify-between min-h-[250px]">
             <h3 className="text-2xl font-semibold text-teal-400">{project.title}</h3>
             <p className="text-gray-400 text-sm mb-2">{project.tech}</p>
             <p className="text-lg leading-relaxed flex-grow">{project.description}</p>
@@ -55,14 +57,14 @@ export default function Projects() {
       </div>
 
       {/* Slider for Mobile Screens */}
-      <div className="md:hidden w-full max-w-md">
-        <Slider {...settings}>
+      <div className="md:hidden w-full flex justify-center">
+        <Slider {...settings} className="w-full max-w-xs"> {/* Set max width for mobile */}
           {projects.map((project, index) => (
-            <div key={index} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold text-teal-400">{project.title}</h3>
-              <p className="text-gray-400 text-sm mb-2">{project.tech}</p>
-              <p className="text-lg leading-relaxed">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-teal-600 hover:underline">
+            <div key={index} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-4 rounded-lg shadow-lg  w-[100%] mx-auto flex flex-col justify-between">
+              <h3 className="text-lg font-semibold text-teal-400">{project.title}</h3>
+              <p className="text-gray-400 text-xs mb-1">{project.tech}</p>
+              <p className="text-sm leading-relaxed  text-left">{project.description}</p> {/* Truncate long text */}
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-teal-400 hover:underline">
                 GitHub ↗
               </a>
             </div>
