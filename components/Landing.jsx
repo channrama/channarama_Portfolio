@@ -84,11 +84,14 @@ export default function LandingPage() {
     <p className="mt-4 text-base sm:text-lg md:text-xl leading-relaxed">
       I'm a Full Stack Developer skilled in JavaScript, React.js, Next.js, and Node.js.  
       Passionate about blockchain, AI, and building scalable applications.  
-      Beyond coding, I write poetry in Kannada and love books that challenge my thinking.
+      Beyond coding, I write poetry in Kannada and enjoy reading books that broaden my perspective.
+    </p>
+    <p className="mt-4 text-base sm:text-lg md:text-xl leading-relaxed">
+      I’m also passionate about cooking and love experimenting with different cuisines.
     </p>
     <p className="mt-3 text-base sm:text-lg md:text-xl leading-relaxed">
       I believe in pushing beyond limits, embracing struggle, and growing through challenges.  
-      No shortcuts—just discipline, passion, and persistence.  
+      No shortcuts just discipline, passion, and persistence.  
       <b className="text-teal-400"> Stay Hard.</b>
     </p>
     <p className="mt-3 text-base sm:text-lg md:text-xl leading-relaxed">
