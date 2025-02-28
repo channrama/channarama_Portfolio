@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { TypeAnimation } from "react-type-animation";
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,58 +24,67 @@ export default function LandingPage() {
       
       {/* Navbar */}
       <nav className={`fixed top-0 w-full flex justify-center space-x-6 p-4 transition-opacity duration-500 backdrop-blur-md ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-        <button onClick={() => scrollToSection("about")} className="text-lg sm:text-xl text-gray-300 hover:text-teal-400 transition">About</button>
-        <button onClick={() => scrollToSection("projects")} className="text-lg sm:text-xl text-gray-300 hover:text-teal-400 transition">Projects</button>
-        <button onClick={() => scrollToSection("contact")} className="text-lg sm:text-xl text-gray-300 hover:text-teal-400 transition">Contact</button>
+        <button onClick={() => scrollToSection("home")} className="text-lg sm:text-xl text-gray-400 hover:text-teal-400 transition">Home</button>
+        <button onClick={() => scrollToSection("about")} className="text-lg sm:text-xl text-gray-400 hover:text-teal-400 transition">About</button>
+        <button onClick={() => scrollToSection("projects")} className="text-lg sm:text-xl text-gray-400 hover:text-teal-400 transition">Projects</button>
+        <button onClick={() => scrollToSection("contact")} className="text-lg sm:text-xl text-gray-400 hover:text-teal-400 transition">Contact</button>
       </nav>
 
-   
-
       {/* Hero Section */}
-      <section className="h-screen flex flex-col items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="relative w-40 h-40 sm:w-44 sm:h-44 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-teal-500 shadow-lg shadow-teal-500/50"
-        >
+      <section id="home" className="h-screen flex flex-col items-center justify-center">
+        <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-teal-400 shadow-lg">
           <Image src="/profile.jpg" alt="Channa Rama" fill className="object-cover" />
-        </motion.div>
+        </div>
 
-        <motion.h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-extrabold relative z-10"
-          initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-          Hello, I'm {" "}
-          <span className="text-teal-400 hover:text-purple-400 transition">
-            Channa Rama
-          </span>
-        </motion.h1>
+        <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-extrabold">
+          Hello, I'm <span className="text-teal-400">Channa Rama</span>
+        </h1>
 
-        {/* Typing Effect */}
-        <motion.p className="mt-4 text-base sm:text-lg md:text-2xl text-gray-300 relative z-10"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1 }}>
-          <TypeAnimation
-            sequence={["Full-Stack Developer", 2000, "Problem Solver", 2000, "AI & Blockchain Explorer", 2000]}
-            speed={50} repeat={Infinity}
-          />
-        </motion.p>
+        <p className="mt-4 text-base sm:text-lg md:text-2xl text-gray-300">
+          Full-Stack Developer | Problem Solver | AI & Blockchain Explorer
+        </p>
 
         {/* CTA Buttons */}
-        <motion.div className="mt-6 flex flex-col sm:flex-row gap-4 relative z-10"
-          initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.5 }}>
+        <div className="mt-6 flex flex-col sm:flex-row gap-4">
           <a
             href="/channarama_Resume.pdf"
             download="Channa_Rama_Resume.pdf"
-            className="px-6 py-3 bg-teal-500 text-white rounded-lg flex items-center gap-2 hover:bg-teal-600 transition shadow-lg shadow-teal-500/50"
+            className="px-6 py-3 bg-teal-500 text-white rounded-lg flex items-center gap-2 hover:bg-teal-600 transition shadow-lg"
           >
             Download Resume <ArrowDownTrayIcon className="w-5 h-5" />
           </a>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Sections */}
-      <section id="about" className="h-screen flex items-center justify-center text-gray-300 text-2xl md:text-3xl">About Section</section>
-      <section id="projects" className="h-screen flex items-center justify-center text-gray-300 text-2xl md:text-3xl">Projects Section</section>
-      <section id="contact" className="h-screen flex items-center justify-center text-gray-300 text-2xl md:text-3xl">Contact Section</section>
+      {/* About Section */}
+              {/* About Section */}
+      <section id="about" className="h-screen flex flex-col justify-center items-center w-full px-6">
+        <div className="max-w-4xl text-center text-gray-200">
+          <h2 className="text-4xl sm:text-5xl font-bold text-teal-400 mt-[-40px]">About Me</h2>
+          <div className="mt-4 border-b-4 border-teal-400 w-20 mx-auto"></div>
+          <p className="mt-6 text-lg sm:text-xl leading-relaxed">
+            A relentless coder, a poet at heart, and a master of flavors in the kitchen. When I'm not busy solving complex problems in JavaScript, React.js, and Next.js,  
+            I am weaving verses in Kannada, capturing emotions in words.
+          </p>
+          <p className="mt-4 text-lg sm:text-xl leading-relaxed">
+            My philosophy is simple—push beyond limits, embrace the struggle, and grow through challenges.  
+            No shortcuts, no easy paths—just pure grind and passion. <b className="text-teal-400">Stay Hard.</b>
+          </p>
+          <p className="mt-4 text-lg sm:text-xl leading-relaxed">
+            Whether it's optimizing an algorithm, writing poetry, or experimenting with a new dish,  
+            I bring the same energy and discipline to everything I do.  
+            Life is a mix of logic and art, and I thrive in both worlds.
+          </p>
+        </div>
+      </section>
+
+
+
+      {/* Projects Section */}
+      <section id="projects" className="h-screen flex items-center justify-center text-gray-200 text-2xl md:text-3xl">Projects Section</section>
+      
+      {/* Contact Section */}
+      <section id="contact" className="h-screen flex items-center justify-center text-gray-200 text-2xl md:text-3xl">Contact Section</section>
     </main>
   );
 }
