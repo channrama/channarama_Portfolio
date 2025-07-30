@@ -1,21 +1,28 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "My Portfolio",
-  description: "Advanced portfolio website",
+  title: "D S Channappa | Full Stack Developer",
+  description: "Portfolio of D S Channappa - Full Stack Developer specializing in React, Node.js, and Blockchain technology",
+  keywords: "Full Stack Developer, React, Node.js, Blockchain, JavaScript, Portfolio",
+  authors: [{ name: "D S Channappa" }],
+  openGraph: {
+    title: "D S Channappa | Full Stack Developer",
+    description: "Portfolio of D S Channappa - Full Stack Developer specializing in React, Node.js, and Blockchain technology",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-black text-white`}>
-       
-        <main className="min-h-screen">{children}</main> {/* Page content */}
-       
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} bg-white dark:bg-black text-black dark:text-white transition-colors duration-300`}>
+        <ThemeProvider>
+          <main className="min-h-screen">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
