@@ -12,9 +12,9 @@ export default function Hero() {
     <section id="home" className="h-screen flex flex-col items-center justify-center relative">
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-teal-400 dark:bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400 dark:bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-400 dark:bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Particle Animation */}
@@ -25,29 +25,29 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className="relative w-40 h-40 sm:w-44 sm:h-44 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-teal-500 dark:border-teal-400 shadow-lg shadow-teal-500/50 dark:shadow-teal-400/50 z-10"
+        className="relative w-40 h-40 sm:w-44 sm:h-44 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-teal-400 shadow-lg shadow-teal-400/50 z-10"
       >
         <Image src="/profile.jpg" alt="D S Channappa" fill className="object-cover" />
       </motion.div>
 
       {/* Name and Title */}
-      <motion.h1 
-        className="mt-4 text-3xl sm:text-5xl md:text-6xl font-extrabold relative z-10"
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
+      <motion.h1
+        className="mt-4 text-3xl sm:text-5xl md:text-6xl font-extrabold text-center relative z-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
         Hello, I'm{" "}
-        <span className="text-teal-500 dark:text-teal-400 hover:text-purple-500 dark:hover:text-purple-400 transition">
+        <span className="text-teal-400 hover:text-purple-400 transition">
           D S Channappa
         </span>
       </motion.h1>
 
       {/* Typing Animation */}
-      <motion.p 
-        className="mt-4 text-base sm:text-lg md:text-2xl text-gray-600 dark:text-gray-300 relative z-10"
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
+      <motion.p
+        className="mt-4 text-base sm:text-lg md:text-2xl text-gray-300 text-center relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
         <TypeAnimation

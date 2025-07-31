@@ -28,10 +28,8 @@ const experiences = [
     icon: AcademicCapIcon,
     type: "education",
     achievements: [
-      "Achieved 93.50% in PUC examinations",
-      "Science stream with focus on Mathematics and Physics",
-      "Developed analytical and problem-solving skills",
-      "Participated in various academic competitions"
+      "Achieved 93.50% in PUC examinations"
+      
     ]
   },
   {
@@ -44,9 +42,8 @@ const experiences = [
     type: "education",
     achievements: [
       "Secured 92.64% in SSLC examinations",
-      "Consistent academic excellence throughout school",
-      "Developed interest in mathematics and logical reasoning",
-      "Active participation in school technical events"
+      "Consistent academic excellence throughout school"
+     
     ]
   }
 ];

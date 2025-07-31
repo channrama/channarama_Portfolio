@@ -146,16 +146,16 @@ export default function Skills() {
         </div>
 
         {/* Title */}
-        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">{title}</h3>
+        <h3 className="text-2xl font-bold text-white mb-6">{title}</h3>
 
         {/* Details Grid */}
         <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
           {details.map((detail, index) => (
-            <div key={index} className="text-center p-3 bg-white/5 dark:bg-gray-700/30 rounded-lg">
-              <div className="text-lg font-bold text-gray-800 dark:text-white">
+            <div key={index} className="text-center p-3 bg-gray-700/30 rounded-lg">
+              <div className="text-lg font-bold text-white">
                 {loading ? "..." : detail.value}
               </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">
+              <div className="text-xs text-gray-400">
                 {detail.label}
               </div>
             </div>
@@ -174,8 +174,8 @@ export default function Skills() {
         transition={{ duration: 0.8 }}
         className="max-w-4xl text-center"
       >
-        <h2 className="text-3xl sm:text-5xl font-bold text-teal-500 dark:text-teal-400 mb-4">Coding Progress</h2>
-        <div className="border-b-4 border-teal-500 dark:border-teal-400 w-16 mx-auto mb-16"></div>
+        <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-4">Coding Progress</h2>
+        <div className="border-b-4 border-teal-400 w-16 mx-auto mb-16"></div>
 
         {/* Two Comprehensive Progress Circles */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
@@ -276,7 +276,7 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">Technical Skills</h3>
+          <h3 className="text-xl font-semibold text-white mb-6">Technical Skills</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               "JavaScript", "React.js", "Next.js", "Node.js", "MongoDB", "Express.js",
@@ -285,7 +285,7 @@ export default function Skills() {
             ].map((skill) => (
               <span
                 key={skill}
-                className="px-4 py-2 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium hover:bg-teal-200 dark:hover:bg-teal-900/50 transition-colors"
+                className="px-4 py-2 bg-teal-900/30 text-teal-300 rounded-full text-sm font-medium hover:bg-teal-900/50 transition-colors"
               >
                 {skill}
               </span>

@@ -43,22 +43,6 @@ export default function About() {
           
           <div className="space-y-6">
             <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-teal-400 mb-3">Education</h3>
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-medium text-white">B.E. Computer Science & Engineering</h4>
-                  <p className="text-gray-400">Siddaganga Institute of Technology</p>
-                  <p className="text-sm text-gray-500">2022 - Present | CGPA: 8.76</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-white">Pre-University Education</h4>
-                  <p className="text-gray-400">The Master's PU College Tumkur</p>
-                  <p className="text-sm text-gray-500">2020 - 2022 | Grade: 93.50%</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gray-800 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-teal-400 mb-3">Interests</h3>
               <div className="flex flex-wrap gap-2">
                 {["Blockchain", "Web Development", "Poetry", "Cooking", "Reading", "Problem Solving"].map((interest) => (

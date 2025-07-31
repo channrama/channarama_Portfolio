@@ -72,7 +72,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="min-h-screen flex flex-col justify-center items-center w-full px-6 py-20">
+    <section id="projects" className="min-h-screen flex flex-col justify-center items-center w-full px-4 sm:px-6 py-16 sm:py-20">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
@@ -91,7 +91,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full h-full flex flex-col justify-between min-h-[400px] border border-gray-200 dark:border-gray-700 hover:border-teal-500 dark:hover:border-teal-400 group"
+              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full h-full flex flex-col justify-between min-h-[400px] border border-gray-700 hover:border-teal-400 group"
             >
               {/* Project Image Placeholder */}
               <div className="w-full h-48 bg-gradient-to-br from-teal-400 to-purple-500 rounded-lg mb-4 flex items-center justify-center">
@@ -100,8 +100,8 @@ export default function Projects() {
 
               <div className="flex-grow">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition">{project.title}</h3>
-                  <span className="px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">
+                  <h3 className="text-xl font-semibold text-white group-hover:text-teal-400 transition">{project.title}</h3>
+                  <span className="px-2 py-1 bg-teal-900/30 text-teal-300 rounded-full text-xs font-medium">
                     {project.category}
                   </span>
                 </div>
@@ -111,24 +111,24 @@ export default function Projects() {
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs"
+                      className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Features */}
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-2">Key Features:</h4>
+                  <h4 className="text-sm font-semibold text-white mb-2">Key Features:</h4>
                   <ul className="space-y-1">
                     {project.features.slice(0, 3).map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-xs text-gray-600 dark:text-gray-400 flex items-start gap-2">
-                        <span className="w-1 h-1 bg-teal-500 dark:bg-teal-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                      <li key={featureIndex} className="text-xs text-gray-400 flex items-start gap-2">
+                        <span className="w-1 h-1 bg-teal-400 rounded-full mt-1.5 flex-shrink-0"></span>
                         {feature}
                       </li>
                     ))}
@@ -137,12 +137,12 @@ export default function Projects() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex gap-3 pt-4 border-t border-gray-700">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center py-2 bg-teal-500 dark:bg-teal-600 text-white rounded-lg hover:bg-teal-600 dark:hover:bg-teal-700 transition font-medium text-sm"
+                  className="flex-1 text-center py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition font-medium text-sm"
                 >
                   GitHub ↗
                 </a>
@@ -151,7 +151,7 @@ export default function Projects() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 text-center py-2 bg-purple-500 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-600 dark:hover:bg-purple-700 transition font-medium text-sm"
+                    className="flex-1 text-center py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium text-sm"
                   >
                     Live Demo ↗
                   </a>
@@ -162,62 +162,77 @@ export default function Projects() {
         </div>
 
         {/* Slider for Mobile Screens */}
-        <div className="md:hidden w-full flex justify-center">
-          <Slider {...settings} className="w-full max-w-sm">
+        <div className="md:hidden w-full px-2">
+          <Slider {...settings} className="w-full">
             {projects.map((project, index) => (
-              <div key={index} className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg shadow-lg mx-auto border border-gray-200 dark:border-gray-700">
-                {/* Project Image Placeholder */}
-                <div className="w-full h-32 bg-gradient-to-br from-teal-400 to-purple-500 rounded-lg mb-3 flex items-center justify-center">
-                  <span className="text-white font-semibold text-sm">{project.category}</span>
-                </div>
+              <div key={index} className="px-2">
+                <div className="bg-gray-800/50 backdrop-blur-sm p-5 rounded-lg shadow-lg border border-gray-700 mx-auto max-w-sm">
+                  {/* Project Image Placeholder */}
+                  <div className="w-full h-36 bg-gradient-to-br from-teal-400 to-purple-500 rounded-lg mb-4 flex items-center justify-center">
+                    <span className="text-white font-semibold text-sm">{project.category}</span>
+                  </div>
 
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{project.title}</h3>
-                  <span className="px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {project.tech.slice(0, 3).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs"
-                    >
-                      {tech}
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-white flex-1 pr-2">{project.title}</h3>
+                    <span className="px-2 py-1 bg-teal-900/30 text-teal-300 rounded-full text-xs font-medium whitespace-nowrap">
+                      {project.category}
                     </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
-                </div>
+                  </div>
 
-                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-3 line-clamp-3">
-                  {project.description}
-                </p>
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.tech.slice(0, 3).map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.tech.length > 3 && (
+                      <span className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs">
+                        +{project.tech.length - 3}
+                      </span>
+                    )}
+                  </div>
 
-                <div className="flex gap-2">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center py-2 bg-teal-500 dark:bg-teal-600 text-white rounded-lg hover:bg-teal-600 dark:hover:bg-teal-700 transition text-sm font-medium"
-                  >
-                    GitHub ↗
-                  </a>
-                  {project.demo && (
+                  <p className="text-sm leading-relaxed text-gray-300 mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Key Features for Mobile */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-white mb-2">Key Features:</h4>
+                    <ul className="space-y-1">
+                      {project.features.slice(0, 2).map((feature, featureIndex) => (
+                        <li key={featureIndex} className="text-xs text-gray-400 flex items-start gap-2">
+                          <span className="w-1 h-1 bg-teal-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex gap-3 pt-3 border-t border-gray-700">
                     <a
-                      href={project.demo}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center py-2 bg-purple-500 dark:bg-purple-600 text-white rounded-lg hover:bg-purple-600 dark:hover:bg-purple-700 transition text-sm font-medium"
+                      className="flex-1 text-center py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition text-sm font-medium"
                     >
-                      Demo ↗
+                      GitHub ↗
                     </a>
-                  )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm font-medium"
+                      >
+                        Demo ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
