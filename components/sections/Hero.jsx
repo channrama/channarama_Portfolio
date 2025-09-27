@@ -21,7 +21,7 @@ const GitaShloka = ({ onComplete }) => {
       "जया-अपजया की चिंता छोड़ो,",
       "बस अपना फर्ज निभाओ,",
       "विश्वास रखो,",
-      "परिणाम अपने आप आएंगे।"
+      "फल स्वयं ही प्राप्त होगा।"
     ]
   };
 
@@ -80,18 +80,21 @@ const GitaShloka = ({ onComplete }) => {
       className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center overflow-hidden"
     >
       {/* Krishna Arjuna Background Image */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-          style={{
-            backgroundImage: 'url(/krishna-arjuna.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 via-transparent to-purple-900/10"></div>
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40"></div>
-      </div>
+
+  {/* Krishna–Arjuna background */}
+  <div 
+    className="absolute inset-0 bg-no-repeat opacity-70"
+    style={{
+      backgroundImage: 'url(/krishna-arjuna.png)',
+      backgroundSize: 'cover',          // Always fills screen
+      backgroundPosition: '-80px center', // ✅ Shift image right by 80px so Arjuna is visible
+    }}
+  />
+
+  {/* Overlays (cover entire screen) */}
+
+
+
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
@@ -108,9 +111,18 @@ const GitaShloka = ({ onComplete }) => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-8 sm:mb-12"
         >
-          <h4 className="text-sm sm:text-lg md:text-xl text-teal-400 font-light tracking-wide px-2">
-          Belive Krishna
-          </h4>
+<h4
+  className="text-xl sm:text-xl md:text-xl lg:text-xl text-white font-extrabold tracking-wide px-2"
+  style={{
+    textShadow: '2px 2px 15px rgba(27, 255, 232, 0.8), 0 0 30px rgba(171, 255, 242, 0.6)'
+  }}
+>
+  Believe Krishna
+</h4>
+
+
+
+
           <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-transparent via-teal-400 to-transparent mx-auto mt-2 sm:mt-4"></div>
         </motion.div>
 
