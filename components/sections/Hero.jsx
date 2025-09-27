@@ -81,15 +81,21 @@ const GitaShloka = ({ onComplete }) => {
     >
       {/* Krishna Arjuna Background Image */}
 
-  {/* Krishna–Arjuna background */}
-  <div 
-    className="absolute inset-0 bg-no-repeat opacity-70"
-    style={{
-      backgroundImage: 'url(/krishna-arjuna.png)',
-      backgroundSize: 'cover',          // Always fills screen
-      backgroundPosition: '-80px center', // ✅ Shift image right by 80px so Arjuna is visible
-    }}
+{/* Krishna–Arjuna background */}
+<div
+  className="absolute inset-0 bg-no-repeat opacity-70"
+  style={{
+    backgroundImage: 'url(/krishna-arjuna.png)',
+    backgroundSize: 'cover',          // Always fills screen
+    backgroundPosition: 'center',      // Default for larger screens
+  }}
+>
+  {/* Mobile override */}
+  <div className="block sm:hidden absolute inset-0" 
+       style={{ backgroundPosition: '-80px center', backgroundImage: 'url(/krishna-arjuna.png)', backgroundSize: 'cover' }} 
   />
+</div>
+
 
   {/* Overlays (cover entire screen) */}
 
