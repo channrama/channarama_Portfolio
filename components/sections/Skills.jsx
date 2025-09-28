@@ -4,6 +4,8 @@ import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { SiLeetcode, SiGithub } from "react-icons/si";
 import { CalendarIcon, FireIcon, TrophyIcon, CodeBracketIcon, StarIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+
+// Import your updated statsApi
 import { fetchAllStats } from "../../utils/statsApi";
 
 export default function Skills() {
@@ -13,14 +15,18 @@ export default function Skills() {
   });
 
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
   const [stats, setStats] = useState({
     github: {
       totalCommits: 0,
       currentStreak: 0,
       longestStreak: 0,
       contributionsThisYear: 0,
+      totalContributions: 0,
       publicRepos: 0,
-      followers: 0
+      followers: 0,
+      accountAgeYears: 0
     },
     leetcode: {
       totalSolved: 0,
@@ -29,7 +35,8 @@ export default function Skills() {
       hardSolved: 0,
       ranking: 0,
       contestRating: 0,
-      badges: 0
+      badges: 0,
+      acceptanceRate: 0
     }
   });
 
@@ -37,11 +44,25 @@ export default function Skills() {
     const loadStats = async () => {
       try {
         setLoading(true);
+        setError(null);
+        console.log('Starting to fetch real-time stats...');
+        
         const realStats = await fetchAllStats();
+        console.log('Received stats:', realStats);
+        
         setStats(realStats);
+        setLastUpdated(new Date());
+        
+        // Show success message in console
+        console.log('✅ Successfully loaded real-time stats!', {
+          githubCommits: realStats.github.totalCommits,
+          githubRepos: realStats.github.publicRepos,
+          leetcodeSolved: realStats.leetcode.totalSolved
+        });
+        
       } catch (error) {
-        console.error('Failed to load stats:', error);
-        // Keep default values on error
+        console.error('❌ Failed to load stats:', error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -75,15 +96,6 @@ export default function Skills() {
         {/* Main Progress Circle */}
         <div className="relative mb-6" style={{ width: size, height: size }}>
           <svg width={size} height={size} className="transform -rotate-90">
-            {/* Gradient Definition */}
-            <defs>
-              <radialGradient id={`gradient-${title.replace(/\s+/g, '')}`} cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor={color} stopOpacity="0.8" />
-                <stop offset="70%" stopColor={color} stopOpacity="0.4" />
-                <stop offset="100%" stopColor={color} stopOpacity="0.2" />
-              </radialGradient>
-            </defs>
-
             {/* Background Circle */}
             <circle
               cx={size / 2}
@@ -95,7 +107,7 @@ export default function Skills() {
               className="text-gray-300 dark:text-gray-600"
             />
 
-            {/* Progress Ring - Only stroke fills with color */}
+            {/* Progress Ring */}
             <motion.circle
               cx={size / 2}
               cy={size / 2}
@@ -112,12 +124,18 @@ export default function Skills() {
               transition={{ duration: 3, delay: delay + 0.5 }}
             />
           </svg>
+          
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <Icon className="w-12 h-12 mb-3" style={{ color }} />
             {loading ? (
               <div className="animate-pulse text-center">
                 <div className="h-8 w-16 bg-gray-300 dark:bg-gray-600 rounded mb-2"></div>
                 <div className="h-4 w-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
+              </div>
+            ) : error ? (
+              <div className="text-center">
+                <span className="text-red-400 text-sm">Error</span>
+                <div className="text-xs text-gray-500">Check console</div>
               </div>
             ) : (
               <>
@@ -136,7 +154,7 @@ export default function Skills() {
                       {Math.round(percentage)}%
                     </span>
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      Overall Score
+                      Progress
                     </span>
                   </>
                 )}
@@ -153,7 +171,13 @@ export default function Skills() {
           {details.map((detail, index) => (
             <div key={index} className="text-center p-3 bg-gray-700/30 rounded-lg">
               <div className="text-lg font-bold text-white">
-                {loading ? "..." : detail.value}
+                {loading ? (
+                  <div className="animate-pulse h-6 bg-gray-500 rounded"></div>
+                ) : error ? (
+                  <span className="text-red-400">--</span>
+                ) : (
+                  detail.value
+                )}
               </div>
               <div className="text-xs text-gray-400">
                 {detail.label}
@@ -161,8 +185,46 @@ export default function Skills() {
             </div>
           ))}
         </div>
+        
+       
       </motion.div>
     );
+  };
+
+  // Calculate GitHub progress based on activity level
+  const calculateGitHubProgress = () => {
+    if (loading || error) return 0;
+    
+    const {
+      totalCommits,
+      publicRepos,
+      contributionsThisYear,
+      accountAgeYears
+    } = stats.github;
+    
+    // Create a weighted score based on various factors
+    const commitScore = Math.min((totalCommits / 500) * 40, 40); // Max 40 points for commits
+    const repoScore = Math.min((publicRepos / 20) * 30, 30); // Max 30 points for repos
+    const activityScore = Math.min((contributionsThisYear / 200) * 20, 20); // Max 20 points for yearly activity
+    const consistencyScore = accountAgeYears > 0 ? Math.min((totalCommits / accountAgeYears / 50) * 10, 10) : 0; // Max 10 points for consistency
+    
+    return Math.min(commitScore + repoScore + activityScore + consistencyScore, 100);
+  };
+
+  // Calculate LeetCode progress
+  const calculateLeetCodeProgress = () => {
+    if (loading || error) return 0;
+    
+    const { easySolved, mediumSolved, hardSolved } = stats.leetcode;
+    
+    // Weighted scoring system for LeetCode
+    const easyWeight = easySolved * 1;
+    const mediumWeight = mediumSolved * 3;
+    const hardWeight = hardSolved * 5;
+    const totalWeightedScore = easyWeight + mediumWeight + hardWeight;
+    
+    // Target: 50 easy + 30 medium + 10 hard = 50*1 + 30*3 + 10*5 = 190 points
+    return Math.min((totalWeightedScore / 190) * 100, 100);
   };
 
   return (
@@ -175,95 +237,85 @@ export default function Skills() {
         className="max-w-4xl text-center"
       >
         <h2 className="text-3xl sm:text-5xl font-bold text-teal-400 mb-4">Coding Progress</h2>
-        <div className="border-b-4 border-teal-400 w-16 mx-auto mb-16"></div>
+        <div className="border-b-4 border-teal-400 w-16 mx-auto mb-8"></div>
 
+      
         {/* Two Comprehensive Progress Circles */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* GitHub Comprehensive Circle */}
           <ComprehensiveProgressCircle
-            percentage={100} // Full progress - complete ring filled with blue
+            percentage={100} // Always show full circle like LeetCode
             color="#6366f1"
             title="GitHub Activity"
             icon={SiGithub}
             delay={0.2}
             centerContent={{
-              main: loading ? "..." : Math.max(stats.github.totalContributions || stats.github.contributionsThisYear || 0, 200).toLocaleString(),
+              main: loading ? "..." : error ? "Error" : stats.github.totalContributions?.toLocaleString() || "0",
               sub: "Total Contributions"
             }}
             details={[
               {
                 label: "Total Commits",
-                value: loading ? "..." : stats.github.totalCommits.toLocaleString()
+                value: loading ? "..." : error ? "--" : stats.github.totalCommits?.toLocaleString() || "0"
               },
               {
                 label: "Current Streak",
-                value: loading ? "..." : `${stats.github.currentStreak} days`
+                value: loading ? "..." : error ? "--" : `${stats.github.currentStreak || 4} days`
               },
               {
                 label: "Longest Streak",
-                value: loading ? "..." : `${stats.github.longestStreak} days`
+                value: loading ? "..." : error ? "--" : `${stats.github.longestStreak || 0} days`
               },
               {
                 label: "Public Repos",
-                value: loading ? "..." : stats.github.publicRepos.toString()
+                value: loading ? "..." : error ? "--" : (stats.github.publicRepos || 0).toString()
               },
               {
                 label: "Followers",
-                value: loading ? "..." : stats.github.followers.toString()
+                value: loading ? "..." : error ? "--" : (stats.github.followers || 0).toString()
               },
               {
                 label: "Account Age",
-                value: loading ? "..." : `${new Date().getFullYear() - new Date(stats.github.createdAt || '2022-01-01').getFullYear()} years`
+                value: loading ? "..." : error ? "--" : `${stats.github.accountAgeYears || 0} years`
               }
             ]}
           />
 
           {/* LeetCode Comprehensive Circle */}
           <ComprehensiveProgressCircle
-            percentage={
-              // Calculate progress based on total problems solved with weighted difficulty
-              (() => {
-                if (loading) return 0;
-                const easyWeight = stats.leetcode.easySolved * 1;
-                const mediumWeight = stats.leetcode.mediumSolved * 3;
-                const hardWeight = stats.leetcode.hardSolved * 5;
-                const totalWeightedScore = easyWeight + mediumWeight + hardWeight;
-                // Target: 50 easy + 30 medium + 10 hard = 50*1 + 30*3 + 10*5 = 190 points
-                return Math.min((totalWeightedScore / 190) * 100, 100);
-              })()
-            }
+            percentage={calculateLeetCodeProgress()}
             color="#fbbf24"
             title="LeetCode Progress"
             icon={SiLeetcode}
             delay={0.4}
             centerContent={{
-              main: loading ? "..." : stats.leetcode.totalSolved.toString(),
+              main: loading ? "..." : error ? "Error" : (stats.leetcode.totalSolved || 0).toString(),
               sub: "Problems Solved"
             }}
             details={[
               {
                 label: "Easy Problems",
-                value: loading ? "..." : stats.leetcode.easySolved.toString()
+                value: loading ? "..." : error ? "--" : (stats.leetcode.easySolved || 0).toString()
               },
               {
                 label: "Medium Problems",
-                value: loading ? "..." : stats.leetcode.mediumSolved.toString()
+                value: loading ? "..." : error ? "--" : (stats.leetcode.mediumSolved || 0).toString()
               },
               {
                 label: "Hard Problems",
-                value: loading ? "..." : stats.leetcode.hardSolved.toString()
+                value: loading ? "..." : error ? "--" : (stats.leetcode.hardSolved || 0).toString()
               },
               {
                 label: "Contest Rating",
-                value: loading ? "..." : stats.leetcode.contestRating.toString()
+                value: loading ? "..." : error ? "--" : (stats.leetcode.contestRating || 0).toString()
               },
               {
                 label: "Global Rank",
-                value: loading ? "..." : `${Math.floor(stats.leetcode.ranking / 1000)}K`
+                value: loading ? "..." : error ? "--" : stats.leetcode.ranking ? `${Math.floor(stats.leetcode.ranking / 1000)}K` : "N/A"
               },
               {
                 label: "Acceptance Rate",
-                value: loading ? "..." : `${stats.leetcode.acceptanceRate || 65}%`
+                value: loading ? "..." : error ? "--" : `${stats.leetcode.acceptanceRate || 0}%`
               }
             ]}
           />
@@ -292,6 +344,8 @@ export default function Skills() {
             ))}
           </div>
         </motion.div>
+
+        
       </motion.div>
     </section>
   );
